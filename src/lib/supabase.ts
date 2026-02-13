@@ -8,9 +8,13 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Database } from '../types/database'
 
-// 从环境变量获取 Supabase 配置
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ?? 'https://tdrbuwshyebmjqljggww.supabase.co'
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkcmJ1d3NoeWVibWpxbGpnZ3d3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1OTY1NTYsImV4cCI6MjA4NjE3MjU1Nn0.sCLu2Zc4BmtAMvf_BeeZLRa6NfN_2KAMQO4HrZD9Bqg'
+// 从环境变量获取 Supabase 配置（在 netlify.toml 或 Netlify 环境变量中设置）
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('缺少 Supabase 配置，请设置 VITE_SUPABASE_URL 和 VITE_SUPABASE_ANON_KEY 环境变量')
+}
 
 /**
  * Supabase 客户端单例
