@@ -47,6 +47,9 @@ export async function createPersonalPlan(
   plan: CreatePersonalPlanParams
 ): Promise<PersonalPlan | null> {
   try {
+    // 获取当前登录用户，用于 RLS 策略
+    const { data: { user } } = await supabase.auth.getUser()
+
     const { data, error } = await supabase
       .from('tasks')
       .insert({
@@ -59,6 +62,8 @@ export async function createPersonalPlan(
         end_time: plan.end_time || null,
         location: plan.location || null,
         supplier_id: plan.supplier_id || null,
+        assignee_id: user?.id || null,
+        assignee_name: user?.user_metadata?.full_name || user?.email || 'Me',
         source: 'Personal',
         status: 'pending',
         sync_to_calendar: plan.sync_to_calendar ?? true
