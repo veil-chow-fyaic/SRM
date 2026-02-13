@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_SUPABASE_URL = "https://tdrbuwshyebmjqljggww.supabase.co"
+  VITE_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkcmJ1d3NoeWVibWpxbGpnZ3d3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1OTY1NTYsImV4cCI6MjA4NjE3MjU1Nn0.sCLu2Zc4BmtAMvf_BeeZLRa6NfN_2KAMQO4HrZD9Bqg"
+
+# SPA 路由 - 所有路径回退到 index.html (支持 HashRouter)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
