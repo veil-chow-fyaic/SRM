@@ -1,0 +1,5 @@
+Total messages: 20 (Errors: 2, Warnings: 4)
+Returning 2 messages for level "error"
+
+The requested module '/src/types/supplier.ts' does not provide an export named 'Supplier'
+The requested module '/src/types/supplier.ts' does not provide an export named 'Supplier'
