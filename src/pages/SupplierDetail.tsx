@@ -345,6 +345,7 @@ export function SupplierDetail() {
   const uploadFileMutation = useUploadFile();
   const deleteFileMutation = useDeleteFile();
   const getFileUrlMutation = useFileDownloadUrl();
+  const updateSupplierWithLogMutation = useUpdateSupplierWithLog();
 
   // === 所有 useState 必须在条件返回之前调用 ===
   const [isScoreModalOpen, setIsScoreModalOpen] = useState(false);
@@ -648,8 +649,6 @@ export function SupplierDetail() {
   };
 
   // --- 信息维护保存处理 ---
-  const updateSupplierWithLogMutation = useUpdateSupplierWithLog();
-
   const handleSaveSupplierEdit = async (
     updates: SupplierUpdate,
     changeType: ChangeType,

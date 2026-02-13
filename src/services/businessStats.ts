@@ -36,7 +36,9 @@ export async function getBusinessStats(): Promise<BusinessStats | null> {
       return null
     }
 
-    return data as BusinessStats
+    // RPC 返回数组，取第一个元素
+    const row = Array.isArray(data) ? data[0] : data
+    return row as BusinessStats
   } catch (err) {
     console.error('获取经营统计异常:', err)
     return null
@@ -55,7 +57,9 @@ export async function getAlertStats(): Promise<AlertStats | null> {
       return null
     }
 
-    return data as AlertStats
+    // RPC 返回数组，取第一个元素
+    const row = Array.isArray(data) ? data[0] : data
+    return row as AlertStats
   } catch (err) {
     console.error('获取异常预警统计异常:', err)
     return null

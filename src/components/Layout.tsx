@@ -22,7 +22,6 @@ import {
 } from 'lucide-react'
 import { cn } from '../lib/utils'
 import { useAuth } from '../contexts/AuthContext'
-import { NotificationPanel } from './NotificationPanel'
 import { GlobalSearch } from './GlobalSearch'
 import { useBusinessStats } from '../hooks/useBusinessStats'
 import logo from '../assets/logo.png'
@@ -267,9 +266,6 @@ export function Layout() {
           <div className="flex items-center gap-4">
             {/* 全局搜索 */}
             <GlobalSearch />
-
-            {/* 通知面板 */}
-            <NotificationPanel />
           </div>
         </header>
 
