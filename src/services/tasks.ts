@@ -145,9 +145,22 @@ export async function getTaskById(id: string): Promise<Task> {
  * 创建任务
  */
 export async function createTask(task: TaskInsert) {
+  // 如果未指定 assignee_id，自动设置为当前登录用户（满足 RLS 策略）
+  let taskData = task
+  if (!task.assignee_id) {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      taskData = {
+        ...task,
+        assignee_id: user.id,
+        assignee_name: task.assignee_name || user.user_metadata?.full_name || user.email || 'Me',
+      }
+    }
+  }
+
   const { data, error } = await supabase
     .from('tasks')
-    .insert(task as any)
+    .insert(taskData as any)
     .select()
     .single()
 
@@ -156,21 +169,28 @@ export async function createTask(task: TaskInsert) {
   }
 
   return data as Task
-
-  if (error) {
-    throw handleSupabaseError(error)
-  }
-
-  return data
 }
 
 /**
  * 批量创建任务
  */
 export async function batchCreateTasks(tasks: TaskInsert[]) {
+  // 自动为未指定 assignee_id 的任务设置当前用户（满足 RLS 策略）
+  const { data: { user } } = await supabase.auth.getUser()
+  const tasksData = tasks.map(task => {
+    if (!task.assignee_id && user) {
+      return {
+        ...task,
+        assignee_id: user.id,
+        assignee_name: task.assignee_name || user.user_metadata?.full_name || user.email || 'Me',
+      }
+    }
+    return task
+  })
+
   const { data, error } = await supabase
     .from('tasks')
-    .insert(tasks as any)
+    .insert(tasksData as any)
     .select()
 
   if (error) {

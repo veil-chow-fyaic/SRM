@@ -438,6 +438,20 @@ GROUP BY s.id;
 ALTER TABLE suppliers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE decision_chain ENABLE ROW LEVEL SECURITY;
 ALTER TABLE engagement_logs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE tasks ENABLE ROW LEVEL SECURITY;
+
+-- 任务表 RLS 策略：用户只能操作自己的任务
+CREATE POLICY "Users can view their own tasks" ON tasks
+  FOR SELECT USING (auth.uid() = assignee_id);
+
+CREATE POLICY "Users can create their own tasks" ON tasks
+  FOR INSERT WITH CHECK (auth.uid() = assignee_id);
+
+CREATE POLICY "Users can update their own tasks" ON tasks
+  FOR UPDATE USING (auth.uid() = assignee_id);
+
+CREATE POLICY "Users can delete their own tasks" ON tasks
+  FOR DELETE USING (auth.uid() = assignee_id);
 
 -- 示例策略：用户只能看到自己创建的记录（需要 authentication）
 -- CREATE POLICY "Users can view their own suppliers" ON suppliers
