@@ -304,9 +304,9 @@ export function SupplierEditModal({
           >
             <option value="">请选择</option>
             <option value="monthly">月结</option>
-            <option value="semimonthly">半月结</option>
+            <option value="semi_monthly">半月结</option>
             <option value="weekly">周结</option>
-            <option value="ticket">票结</option>
+            <option value="per_shipment">票结</option>
           </select>
         </div>
         <div>
@@ -317,10 +317,10 @@ export function SupplierEditModal({
             className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
           >
             <option value="">请选择</option>
-            <option value="ETD">ETD (预计离港日)</option>
-            <option value="ETA">ETA (预计到港日)</option>
-            <option value="Gate-in">Gate-in (入闸日)</option>
-            <option value="Invoice">Invoice Date (发票日)</option>
+            <option value="etd">ETD (预计离港日)</option>
+            <option value="eta">ETA (预计到港日)</option>
+            <option value="gate_in">Gate-in (入闸日)</option>
+            <option value="invoice_date">Invoice Date (发票日)</option>
           </select>
         </div>
       </div>
@@ -360,7 +360,6 @@ export function SupplierEditModal({
           <option value="">请选择</option>
           <option value="monthly">月度</option>
           <option value="quarterly">季度</option>
-          <option value="semiannual">半年度</option>
           <option value="annual">年度</option>
         </select>
       </div>

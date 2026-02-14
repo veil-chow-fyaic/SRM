@@ -39,6 +39,39 @@ interface Session {
   token_type: string
 }
 
+interface AuthErrorLike {
+  message?: string
+  code?: string
+}
+
+function mapSignInError(error: unknown): Error {
+  const authError = (error || {}) as AuthErrorLike
+  const rawMessage = String(authError.message || '').toLowerCase()
+  const rawCode = String(authError.code || '').toLowerCase()
+
+  if (
+    rawCode.includes('email_not_confirmed') ||
+    rawMessage.includes('email not confirmed') ||
+    (rawMessage.includes('email') && rawMessage.includes('confirm'))
+  ) {
+    return new Error('邮箱尚未完成验证，请先查收确认邮件并点击链接后再登录。')
+  }
+
+  if (rawMessage.includes('invalid login credentials')) {
+    return new Error('邮箱或密码错误，请检查后重试。')
+  }
+
+  if (rawMessage.includes('too many requests')) {
+    return new Error('请求过于频繁，请稍后再试。')
+  }
+
+  if (authError.message) {
+    return new Error(authError.message)
+  }
+
+  return new Error('登录失败，请稍后重试。')
+}
+
 /**
  * 注册结果类型
  */
@@ -121,7 +154,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const {
         data: { subscription },
       } = supabase.auth.onAuthStateChange(async (event, session) => {
-        console.log('[AuthContext] Auth state changed:', event, session?.user?.id)
+        if (import.meta.env.DEV && !(event === 'INITIAL_SESSION' && !session?.user)) {
+          console.log('[AuthContext] Auth state changed:', event, session?.user?.id)
+        }
 
         if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
           if (session?.user && mounted) {
@@ -163,10 +198,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signUp = async (email: string, password: string, name: string): Promise<SignUpResult> => {
     setLoading(true)
     try {
+      const emailRedirectTo =
+        import.meta.env.VITE_AUTH_REDIRECT_URL || 'https://fuyo-srm.netlify.app/login'
+
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
+          emailRedirectTo,
           data: {
             full_name: name,
           },
@@ -239,6 +278,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       // 登录成功后获取 profile
       await fetchProfile(data.user.id)
+    } catch (err) {
+      throw mapSignInError(err)
     } finally {
       setLoading(false)
     }

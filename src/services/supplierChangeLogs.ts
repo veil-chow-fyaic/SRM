@@ -12,6 +12,49 @@ import type {
   ChangeType
 } from '../types/database'
 
+function normalizeSupplierUpdatePayload(updates: SupplierUpdate): SupplierUpdate {
+  const normalized: SupplierUpdate = { ...updates }
+
+  if (normalized.financial_interval) {
+    const intervalMap: Record<string, string> = {
+      semimonthly: 'semi_monthly',
+      semi_monthly: 'semi_monthly',
+      ticket: 'per_shipment',
+      per_shipment: 'per_shipment',
+      monthly: 'monthly',
+      weekly: 'weekly',
+    }
+    const key = String(normalized.financial_interval).toLowerCase().replace(/-/g, '_')
+    normalized.financial_interval = intervalMap[key] ?? normalized.financial_interval
+  }
+
+  if (normalized.financial_anchor) {
+    const anchorMap: Record<string, string> = {
+      etd: 'etd',
+      eta: 'eta',
+      gate_in: 'gate_in',
+      invoice: 'invoice_date',
+      invoice_date: 'invoice_date',
+    }
+    const key = String(normalized.financial_anchor).toLowerCase().replace(/[-\s]/g, '_')
+    normalized.financial_anchor = anchorMap[key] ?? normalized.financial_anchor
+  }
+
+  if (normalized.evaluation_period) {
+    const periodMap: Record<string, string> = {
+      semiannual: 'annual',
+      semi_annual: 'annual',
+      monthly: 'monthly',
+      quarterly: 'quarterly',
+      annual: 'annual',
+    }
+    const key = String(normalized.evaluation_period).toLowerCase().replace(/[-\s]/g, '_')
+    normalized.evaluation_period = periodMap[key] ?? normalized.evaluation_period
+  }
+
+  return normalized
+}
+
 /**
  * 更新供应商信息并自动记录修改日志
  * @param supplierId 供应商ID
@@ -32,9 +75,11 @@ export async function updateSupplierWithLog(
   authorName?: string
 ): Promise<UpdateSupplierWithLogResult> {
   try {
+    const normalizedUpdates = normalizeSupplierUpdatePayload(updates)
+
     const { data, error } = await supabase.rpc('update_supplier_with_log', {
       p_supplier_id: supplierId,
-      p_updates: updates,
+      p_updates: normalizedUpdates,
       p_change_type: changeType,
       p_change_title: changeTitle,
       p_change_description: changeDescription || null,
