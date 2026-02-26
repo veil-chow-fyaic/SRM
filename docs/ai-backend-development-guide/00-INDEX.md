@@ -36,7 +36,7 @@ graph TB
 | [03-DATABASE-DESIGN](./03-DATABASE-DESIGN.md) | 数据建模原则、表设计、RLS 策略 | 15 min |
 | [04-RPC-FUNCTIONS](./04-RPC-FUNCTIONS.md) | RPC 函数开发、常见模式、性能优化 | 15 min |
 | [05-FRONTEND-INTEGRATION](./05-FRONTEND-INTEGRATION.md) | 服务层、React Query Hooks、类型安全 | 15 min |
-| [06-AUTH-EMAIL](./06-AUTH-EMAIL.md) | 用户认证、邮件服务 (Resend)、垃圾邮件避免 | 10 min |
+| [06-AUTH-EMAIL](./06-AUTH-EMAIL.md) | 用户认证、邮件服务 (Resend + Cloudflare)、DNS 配置 | 15 min |
 | [07-TESTING](./07-TESTING.md) | 分层测试策略、SQL/API/前端测试 | 10 min |
 | [08-TROUBLESHOOTING](./08-TROUBLESHOOTING.md) | 常见问题、错误排查、解决方案 | 参考 |
 
@@ -55,6 +55,7 @@ graph TB
 
 ### 特定问题路径
 - 认证问题: `06-AUTH-EMAIL`
+- DNS/邮件问题: `06-AUTH-EMAIL` (Cloudflare 部分)
 - 权限问题: `03-DATABASE-DESIGN` (RLS 部分)
 - 性能问题: `04-RPC-FUNCTIONS` (优化部分)
 - 报错排查: `08-TROUBLESHOOTING`
@@ -82,6 +83,7 @@ npm run test
 | Supabase 客户端 | `src/lib/supabase.ts` |
 | MCP 配置 | Claude Code 设置 |
 | RLS 策略 | Supabase SQL Editor |
+| DNS 配置 | Cloudflare Dashboard |
 
 ---
 
@@ -89,3 +91,5 @@ npm run test
 > - [原始完整文档](./README.md)
 > - [Supabase 官方文档](https://supabase.com/docs)
 > - [React Query 文档](https://tanstack.com/query/latest)
+> - [Resend 文档](https://resend.com/docs)
+> - [Cloudflare DNS 文档](https://developers.cloudflare.com/dns/)
