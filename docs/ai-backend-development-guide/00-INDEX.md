@@ -14,6 +14,7 @@ graph TB
     A --> G[06-AUTH-EMAIL<br/>认证与邮件配置]
     A --> H[07-TESTING<br/>测试策略]
     A --> I[08-TROUBLESHOOTING<br/>故障排除]
+    A --> J[09-PROJECT-HANDOVER<br/>项目交接指南]
 
     B --> C
     C --> D
@@ -22,9 +23,11 @@ graph TB
     F --> G
     G --> H
     H --> I
+    I --> J
 
     style A fill:#e83e0b,color:#fff
     style B fill:#28a745,color:#fff
+    style J fill:#6366f1,color:#fff
 ```
 
 ## 文档列表
@@ -39,6 +42,7 @@ graph TB
 | [06-AUTH-EMAIL](./06-AUTH-EMAIL.md) | 用户认证、邮件服务 (Resend + Cloudflare)、DNS 配置 | 15 min |
 | [07-TESTING](./07-TESTING.md) | 分层测试策略、SQL/API/前端测试 | 10 min |
 | [08-TROUBLESHOOTING](./08-TROUBLESHOOTING.md) | 常见问题、错误排查、解决方案 | 参考 |
+| [09-PROJECT-HANDOVER](./09-PROJECT-HANDOVER.md) | 🆕 项目转移、前端 SDK 配置、交接清单 | 10 min |
 
 ## 学习路径
 
@@ -59,6 +63,7 @@ graph TB
 - 权限问题: `03-DATABASE-DESIGN` (RLS 部分)
 - 性能问题: `04-RPC-FUNCTIONS` (优化部分)
 - 报错排查: `08-TROUBLESHOOTING`
+- 项目交接/SDK配置: `09-PROJECT-HANDOVER`
 
 ## 快速参考
 

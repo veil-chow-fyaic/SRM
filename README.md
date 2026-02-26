@@ -170,6 +170,7 @@ SRM/
 | [🔐 认证与邮件](./docs/ai-backend-development-guide/06-AUTH-EMAIL.md) | Resend + Cloudflare 配置 |
 | [🧪 测试策略](./docs/ai-backend-development-guide/07-TESTING.md) | 分层测试方法 |
 | [🔧 故障排除](./docs/ai-backend-development-guide/08-TROUBLESHOOTING.md) | 常见问题解决方案 |
+| [🔄 项目交接](./docs/ai-backend-development-guide/09-PROJECT-HANDOVER.md) | 项目转移、SDK 配置指南 |
 
 👉 [查看完整文档中心](./docs/README.md)
 

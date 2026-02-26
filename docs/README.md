@@ -19,6 +19,7 @@
 | [06-AUTH-EMAIL](./ai-backend-development-guide/06-AUTH-EMAIL.md) | 🔐 用户认证、Resend + Cloudflare 邮件配置 | 15 min |
 | [07-TESTING](./ai-backend-development-guide/07-TESTING.md) | 🧪 分层测试策略、SQL/API/前端测试 | 10 min |
 | [08-TROUBLESHOOTING](./ai-backend-development-guide/08-TROUBLESHOOTING.md) | 🔧 常见问题、错误排查、解决方案 | 参考 |
+| [09-PROJECT-HANDOVER](./ai-backend-development-guide/09-PROJECT-HANDOVER.md) | 🔄 项目转移、前端 SDK 配置、交接清单 | 10 min |
 
 ### 📋 开发参考
 
