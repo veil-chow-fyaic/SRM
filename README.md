@@ -13,9 +13,9 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-[在线演示](#) · [快速开始](#-快速开始) · [文档](./docs/README.md) · [反馈问题](https://github.com/fyaic/SRM/issues)
+[在线演示](https://fuyo-srm.netlify.app) · [快速开始](#-快速开始) · [文档](./docs/README.md) · [反馈问题](https://github.com/fyaic/SRM/issues)
 
-<img src="https://via.placeholder.com/800x400?text=SRM+Dashboard+Preview" alt="SRM Dashboard" width="100%">
+<img src="https://fuyo-srm.netlify.app/dashboard-preview.png" alt="SRM Dashboard" width="100%">
 
 </div>
 
