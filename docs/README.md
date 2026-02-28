@@ -12,7 +12,7 @@
 |------|------|----------|
 | [00-INDEX](./ai-backend-development-guide/00-INDEX.md) | 📖 **导航索引** - 快速找到你需要的内容 | 2 min |
 | [01-QUICK-START](./ai-backend-development-guide/01-QUICK-START.md) | ⚡ 5分钟快速上手，最小可运行示例 | 5 min |
-| [02-SUPABASE-SETUP](./ai-backend-development-guide/02-SUPABASE-SETUP.md) | 🔧 Supabase 项目创建、MCP 配置、环境变量 | 10 min |
+| [02-SUPABASE-SETUP](./ai-backend-development-guide/02-SUPABASE-SETUP.md) | 🔧 Supabase 项目创建、MCP + Skills 配置 | 15 min |
 | [03-DATABASE-DESIGN](./ai-backend-development-guide/03-DATABASE-DESIGN.md) | 🗄️ 数据建模原则、表设计、RLS 策略 | 15 min |
 | [04-RPC-FUNCTIONS](./ai-backend-development-guide/04-RPC-FUNCTIONS.md) | ⚙️ RPC 函数开发、常见模式、性能优化 | 15 min |
 | [05-FRONTEND-INTEGRATION](./ai-backend-development-guide/05-FRONTEND-INTEGRATION.md) | 🎨 服务层、React Query Hooks、类型安全 | 15 min |
@@ -20,6 +20,7 @@
 | [07-TESTING](./ai-backend-development-guide/07-TESTING.md) | 🧪 分层测试策略、SQL/API/前端测试 | 10 min |
 | [08-TROUBLESHOOTING](./ai-backend-development-guide/08-TROUBLESHOOTING.md) | 🔧 常见问题、错误排查、解决方案 | 参考 |
 | [09-PROJECT-HANDOVER](./ai-backend-development-guide/09-PROJECT-HANDOVER.md) | 🔄 项目转移、前端 SDK 配置、交接清单 | 10 min |
+| [10-DEPLOYMENT-STRATEGIES](./ai-backend-development-guide/10-DEPLOYMENT-STRATEGIES.md) | 🌐 云端/私有化部署、MCP 对比、迁移策略 | 15 min |
 
 ### 📋 开发参考
 

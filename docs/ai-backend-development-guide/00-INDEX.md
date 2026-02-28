@@ -15,6 +15,7 @@ graph TB
     A --> H[07-TESTING<br/>测试策略]
     A --> I[08-TROUBLESHOOTING<br/>故障排除]
     A --> J[09-PROJECT-HANDOVER<br/>项目交接指南]
+    A --> K[10-DEPLOYMENT-STRATEGIES<br/>部署策略与迁移]
 
     B --> C
     C --> D
@@ -24,10 +25,12 @@ graph TB
     G --> H
     H --> I
     I --> J
+    J --> K
 
     style A fill:#e83e0b,color:#fff
     style B fill:#28a745,color:#fff
     style J fill:#6366f1,color:#fff
+    style K fill:#f59e0b,color:#fff
 ```
 
 ## 文档列表
@@ -35,14 +38,15 @@ graph TB
 | 文档 | 描述 | 阅读时间 |
 |------|------|----------|
 | [01-QUICK-START](./01-QUICK-START.md) | 5分钟快速上手，最小可运行示例 | 5 min |
-| [02-SUPABASE-SETUP](./02-SUPABASE-SETUP.md) | Supabase 项目创建、MCP 配置、环境变量 | 10 min |
+| [02-SUPABASE-SETUP](./02-SUPABASE-SETUP.md) | Supabase 项目创建、MCP + Skills 配置 | 15 min |
 | [03-DATABASE-DESIGN](./03-DATABASE-DESIGN.md) | 数据建模原则、表设计、RLS 策略 | 15 min |
 | [04-RPC-FUNCTIONS](./04-RPC-FUNCTIONS.md) | RPC 函数开发、常见模式、性能优化 | 15 min |
 | [05-FRONTEND-INTEGRATION](./05-FRONTEND-INTEGRATION.md) | 服务层、React Query Hooks、类型安全 | 15 min |
 | [06-AUTH-EMAIL](./06-AUTH-EMAIL.md) | 用户认证、邮件服务 (Resend + Cloudflare)、DNS 配置 | 15 min |
 | [07-TESTING](./07-TESTING.md) | 分层测试策略、SQL/API/前端测试 | 10 min |
 | [08-TROUBLESHOOTING](./08-TROUBLESHOOTING.md) | 常见问题、错误排查、解决方案 | 参考 |
-| [09-PROJECT-HANDOVER](./09-PROJECT-HANDOVER.md) | 🆕 项目转移、前端 SDK 配置、交接清单 | 10 min |
+| [09-PROJECT-HANDOVER](./09-PROJECT-HANDOVER.md) | 项目转移、前端 SDK 配置、交接清单 | 10 min |
+| [10-DEPLOYMENT-STRATEGIES](./10-DEPLOYMENT-STRATEGIES.md) | 🆕 云端/私有化部署、MCP 对比、迁移策略 | 15 min |
 
 ## 学习路径
 
@@ -64,6 +68,7 @@ graph TB
 - 性能问题: `04-RPC-FUNCTIONS` (优化部分)
 - 报错排查: `08-TROUBLESHOOTING`
 - 项目交接/SDK配置: `09-PROJECT-HANDOVER`
+- 私有化部署/迁移: `10-DEPLOYMENT-STRATEGIES`
 
 ## 快速参考
 

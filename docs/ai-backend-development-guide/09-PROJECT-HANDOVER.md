@@ -102,9 +102,9 @@ flowchart LR
 ────────────────────────────────────────
 
 ✅ 必须交接
-├── Project URL:     https://xxxxxxxx.supabase.co
-├── Anon Key:        eyJhbGciOiJIUzI1NiIsInR5cCI6...
-├── Service Role:    eyJhbGciOiJIUzI1NiIsInR5cCI6... (⚠️ 保密)
+├── Project URL:        https://xxxxxxxx.supabase.co
+├── Publishable Key:    sb_publishable_xxxxxxxxxxxxx
+├── Service Role:       eyJhbGciOiJIUzI1NiIsInR5cCI6... (⚠️ 保密)
 └── Dashboard 访问权限
 
 📦 可选交接
@@ -140,8 +140,10 @@ flowchart TB
 | 凭证 | 位置 | 用途 |
 |------|------|------|
 | **Project URL** | Configuration → URL | API 端点 |
-| **anon key** | Project API keys → anon public | 前端公开使用 |
+| **Publishable Key** | Project API keys → anon public | 前端公开使用 |
 | **service_role key** | Project API keys → service_role secret | 服务端使用（⚠️ 保密） |
+
+> **密钥格式**：新版本使用 `sb_publishable_xxxxx` 格式，旧 JWT 格式仍兼容
 
 ### 2.2 环境变量配置
 
@@ -161,13 +163,14 @@ cp .env.local.example .env.local
 
 # Supabase 配置（从 Dashboard → Settings → API 获取）
 VITE_SUPABASE_URL=https://xxxxxxxxxxxxx.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4eHh4eHh4eHh4eHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MjAxNTAwMDAwMH0.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxxxxxxxxxxxx
 ```
 
 > ⚠️ **安全提示**：
-> - `anon key` 可以公开，用于前端
+> - `Publishable Key` 可以公开，用于前端
 > - `service_role key` **绝不能**放在前端代码或 `.env.local` 中
 > - `.env.local` 已在 `.gitignore` 中，不会被提交
+> - 旧格式 `VITE_SUPABASE_ANON_KEY` 仍然兼容
 
 ### 2.3 SDK 配置代码
 
@@ -180,20 +183,20 @@ import type { Database } from '../types/database'
 
 // 从环境变量读取配置
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
 
 // 验证配置存在
-if (!supabaseUrl || !supabaseAnonKey) {
+if (!supabaseUrl || !supabaseKey) {
   throw new Error(
     '缺少 Supabase 配置！\n' +
     '请确保 .env.local 文件存在并包含：\n' +
     '  VITE_SUPABASE_URL=xxx\n' +
-    '  VITE_SUPABASE_ANON_KEY=xxx'
+    '  VITE_SUPABASE_PUBLISHABLE_KEY=xxx'
   )
 }
 
 // 创建客户端实例
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
   auth: {
     persistSession: true,      // 持久化会话
     autoRefreshToken: true,    // 自动刷新 Token
